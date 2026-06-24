@@ -1,101 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Simple Google Form</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPU Inventory Management</title>
   <style>
+    /* Dark Premium Tech Theme */
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f111a;
+      color: #e2e8f0;
+      padding: 40px 20px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
+
     form {
-      background: #fff;
-      padding: 20px;
-      max-width: 500px;
-      margin: auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #161925;
+      padding: 35px;
+      width: 100%;
+      max-width: 550px;
+      border-radius: 12px;
+      border: 1px solid #2d3748;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-size: 24px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #00f2fe; /* Neon cyan */
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+    }
+
     label {
       display: block;
-      margin-top: 15px;
-      font-weight: bold;
+      margin-top: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
+
+    /* Custom Form Fields */
     input[type="text"],
     select,
     textarea {
       width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      margin-top: 8px;
+      background-color: #0f111a;
+      color: #ffffff;
+      border: 1px solid #4a5568;
+      border-radius: 6px;
       box-sizing: border-box;
+      font-size: 15px;
+      transition: all 0.3s ease;
     }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #00f2fe;
+      box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+    }
+
+    /* Fieldset / Brand Selection Grid */
     fieldset {
-      margin-top: 20px;
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #2d3748;
+      background-color: #1e2235;
+    }
+
+    legend {
+      font-weight: bold;
+      font-size: 13px;
+      padding: 0 10px;
+      color: #00f2fe;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 5px;
+    }
+
+    .brand-grid label {
+      display: flex;
+      align-items: center;
+      margin: 0;
       padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #28a745;
-      color: white;
-      border: none;
-      border-radius: 4px;
+      background: #0f111a;
+      border: 1px solid #4a5568;
+      border-radius: 6px;
       cursor: pointer;
+      color: #ffffff;
+      font-size: 14px;
+      transition: all 0.2s ease;
     }
+
+    .brand-grid label:hover {
+      border-color: #00f2fe;
+      background: rgba(0, 242, 254, 0.05);
+    }
+
+    .brand-grid input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #00f2fe; /* Forces radio button to match cyan theme */
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Action Button */
+    button {
+      width: 100%;
+      margin-top: 30px;
+      padding: 14px;
+      background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+      color: #0f111a;
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.3s ease;
+    }
+
     button:hover {
-      background: #218838;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    textarea {
+      resize: vertical;
     }
   </style>
 </head>
 <body>
 
 <form id="googleForm">
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name" required>
+  <h2>GPU Stock Intake</h2>
 
-  <label for="gender">Gender</label>
-  <select name="gender" id="gender">
-    <option value="Male">Male</option>
-    <option value="Female">Female</option>
-    <option value="Other">Other</option>
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name" placeholder="e.g., RTX 4070 Ti Super" required>
+
+  <label for="vram">VRAM Capacity</label>
+  <select name="vram" id="vram">
+    <option value="4GB">4GB</option>
+    <option value="6GB">6GB</option>
+    <option value="8GB">8GB</option>
+    <option value="12GB">12GB</option>
+    <option value="16GB">16GB</option>
   </select>
 
   <fieldset>
-    <legend>Age Group</legend>
-    <label><input type="radio" name="ageGroup" value="Under 18"> Under 18</label>
-    <label><input type="radio" name="ageGroup" value="18-30"> 18-30</label>
-    <label><input type="radio" name="ageGroup" value="31-50"> 31-50</label>
-    <label><input type="radio" name="ageGroup" value="51+"> 51+</label>
+    <legend>Manufacturer Brand</legend>
+    <div class="brand-grid">
+      <label><input type="radio" name="brand" value="ASUS" required> ASUS</label>
+      <label><input type="radio" name="brand" value="GIGABYTE"> GIGABYTE</label>
+      <label><input type="radio" name="brand" value="MSI"> MSI</label>
+      <label><input type="radio" name="brand" value="COLORFUL"> COLORFUL</label>
+    </div>
   </fieldset>
 
-  <label for="comments">Comments</label>
-  <textarea name="comments" id="comments" rows="4"></textarea>
+  <label for="stock">Stock Notes</label>
+  <textarea name="stock" id="stock" rows="4" placeholder="Enter batch info, current stock quantity, or shelf placement details..."></textarea>
 
-  <button type="submit">Submit</button>
+  <button type="submit">Submit Log to Sheets</button>
 </form>
 
 <script>
-
-// the address which you will attach here will be generated in the Google Apps Script
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxJrQPkgeO7yCeByzbntK0D-gT6KOrXMzFWgDXu6PWmKSsQCMRmL4i6Sm5-cPSOuajnGg/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzArCls6u0dtGxSaisvH20uAvHiaTpi3liEqfLD2QlPGzoGbxKp5dhORtJgm_BtwVrrvg/exec';
   const form = document.getElementById('googleForm');
 
-//When the user clicks the submit button, this function runs.
   form.addEventListener('submit', e => {
-    e.preventDefault(); //This stops the browser’s default action of reloading 
+    e.preventDefault();
+    
+    // Simple visual feedback change on submit button
+    const btn = form.querySelector('button');
+    const originalText = btn.textContent;
+    btn.textContent = 'LOGGING DATA...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-        alert("Form submitted successfully!");
+        alert("Inventory updated successfully!");
         form.reset();
       })
-      .catch(error => alert('Error!', error.message));
+      .catch(error => alert('Error logging inventory: ' + error.message))
+      .finally(() => {
+        // Reset button states
+        btn.textContent = originalText;
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      });
   });
 </script>
 
 </body>
 </html>
-
